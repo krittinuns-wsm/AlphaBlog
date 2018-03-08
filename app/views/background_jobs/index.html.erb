@@ -1,0 +1,49 @@
+<div class="center jumbotron">
+  
+<h1>DELAYED JOB </h1>
+  <div class="delayjob jumbotron">
+    <p><b><%= @message%></b></p>
+    
+    <!--<form>
+      <div class="form-group">
+        <input type="text" class="form-control" id="jobName" aria-describedby="jobNameHelp" placeholder="Please enter a new job name">
+        <small id="jobNameHelp" class="form-text text-muted">After submit, the job will start process in the background.</small>
+      </div>
+      <%= link_to "START", background_job_start_path, class: "btn btn-success" %> <br/><br/><br/><br/>
+    </form>-->
+
+    <!-- TODO : merge with bootstrap -->
+    <%= form_for @newJob do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>:
+      <%= f.text_field :title %><br />
+    </div>
+      <%= f.submit %>
+    <% end %>
+
+    <br/><br/><br/><br/>
+
+    <table class="table">
+      <tr>
+        <th scope="col">Job</th>
+        <th scope="col">Progess</th>
+      </tr>
+
+      <% @jobs.each do |job| %>
+        <tr>
+          <td scope="row"> <%= job.title %> </td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= job.progress%>%"><%= job.progress%>%</div>
+            </div>
+          </td>
+          <td> 
+            <%= link_to "Delete", background_job_path(job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-warning" %>
+          </td>
+        </tr>
+      <% end %>
+
+    </table>
+
+  </div>
+</div>
