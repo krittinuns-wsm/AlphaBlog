@@ -4,24 +4,22 @@
   <div class="delayjob jumbotron">
     <p><b><%= @message%></b></p>
     
-    <!--<form>
+    <%= form_for(@newJob, :html => {:class => 'form-horizontal'}) do |job|%>
       <div class="form-group">
-        <input type="text" class="form-control" id="jobName" aria-describedby="jobNameHelp" placeholder="Please enter a new job name">
-        <small id="jobNameHelp" class="form-text text-muted">After submit, the job will start process in the background.</small>
+        <div class="control-label col-sm-2">
+          <%= job.label :title, "Title : " %>
+        </div>
+        <div class="col-sm-8">
+          <%= job.text_field :title, class: "form-control", placeholder: "Please enter a new job name", autofocus: true %>
+          <small id="jobNameHelp" class="form-text text-muted">After submit, the job will start process in the background.</small>
+        </div>
       </div>
-      <%= link_to "START", background_job_start_path, class: "btn btn-success" %> <br/><br/><br/><br/>
-    </form>-->
-
-    <!-- TODO : merge with bootstrap -->
-    <%= form_for @newJob do |f| %>
-    <div class="form-group">
-      <%= f.label :title %>:
-      <%= f.text_field :title %><br />
-    </div>
-      <%= f.submit %>
+      <div class="form-group">
+         <div class="col-sm-offset-2 col-sm-8">
+          <%= job.submit "START", class: "btn btn-success" %>
+        </div>
+      </div>
     <% end %>
-
-    <br/><br/><br/><br/>
 
     <table class="table">
       <tr>

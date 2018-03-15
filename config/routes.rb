@@ -11,9 +11,6 @@ Rails.application.routes.draw do
   get 'pages/home' => 'pages#home'
   get 'pages/about' => 'pages#about'
 
-  get 'background_job/start' => 'background_job#start'
-
-  #resources :delayjobs
   resources :articles
   resources :background_jobs
 
